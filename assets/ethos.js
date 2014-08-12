@@ -13,9 +13,9 @@ jQuery( document ).ready( function(){
 	}
 
 	var DEFAULTS = {
-		namereg: 'defaults/namereg.html',
-		dox: 'defaults/dox.html',
-		home: 'defaults/home.html'
+		namereg: 'defauts/namereg.html',
+		dox: 'defauts/dox.html',
+		home: 'defauts/home.html'
 	}
 
 	$nav.find('.submit').click( handleClickGo );
