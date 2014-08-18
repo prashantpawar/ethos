@@ -2,7 +2,7 @@ express = require( 'express' )
 url = require( 'url' )  
 
 app = express()
-PORT = 8080
+PORT = 80
 
 NAMEREG_ADDRESS = 'NNN0'
 
@@ -37,7 +37,10 @@ for name, address in MOCK_DATA[NAMEREG_ADDRESS]
   reg( address, name )
 
 app.get '/', (req, res) ->
-  res.send( 'Ethos, an Ethereum Browser')
+
+  res.json
+    url: url.parse( req.url, true )
+    scheme: "http://localhost:#{PORT}/index.html"
 
 app.get '*', (req,res) ->
 
@@ -76,11 +79,9 @@ app.get '*', (req,res) ->
     scheme = "magnet:?xt=urn:btih:#{ domain }"
     scheme += "##{ path }" if path
 
-  request =
+  res.json
     url: url
     scheme: scheme
-
-  res.json( request )
 
 
 app.listen( PORT )
