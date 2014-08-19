@@ -4,7 +4,7 @@ request = require( 'request' )
 jade = require( 'jade' )
 
 app = express()
-app.use( express.static(__dirname + '../static') )
+
 app.set( 'views', __dirname + '/../views' )
 app.set( 'view engine', 'jade' )
 
@@ -26,6 +26,7 @@ MOCK_DATA =
     AAA4: 'http://gavwood.com/gavcoin.html'
     AAA5: 'http://example.com'
     EEE0: "http://localhost:#{ PORT }/index.html"
+    EEE1: "http://eth:#{ PORT }/swarm"
 
 MOCK_DATA[NAMEREG_ADDRESS] =
   ethos: 'EEE0'
@@ -34,16 +35,14 @@ MOCK_DATA[NAMEREG_ADDRESS] =
   th: 'AAA2'
   ip: 'AAA3'
   gavcoin: 'AAA4'
-  myapp: 'AAA5'
+  etherchain: 'AAA5'
+  swarm: 'EEE1'
 
 reg = (address, name) ->
   MOCK_DATA[NAMEREG_ADDRESS][address] = name
 
 for name, address in MOCK_DATA[NAMEREG_ADDRESS]
   reg( address, name )
-
-app.get '/test', (req,res) ->
-  res.render( 'index' )
 
 app.get '/', (req, res) ->
   res.sendFile( 'index.html', {root: './static'});
@@ -84,11 +83,11 @@ app.get '*', (req,res) ->
     scheme = "#{domain}"
     scheme += url.search if url.search
     method = req.method
-    res.render( 'ip', { url: scheme } )
+    res.render( 'ip', url: scheme )
   else if protocol is 'th'
     scheme = "http://eth:8080/th"
     scheme += "##{ base }" if base
-    res.sendFile( 'th.html', root: './static' )
+    res.render( 'th', hash: domain, title: base )
   else
     res.json
       url: url
