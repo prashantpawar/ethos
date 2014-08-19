@@ -1,12 +1,12 @@
 
 console.log ('Building Ethos...')
-console.log( 'Workind dir: ', __dirname )
+console.log( 'Working dir: ', __dirname )
 
 NwBuilder = require( 'node-webkit-builder' )
 nw = new NwBuilder
-  files: '../**/**' # use the glob format
+  files: './**' # use the glob format
   platforms: ['win','osx']
-  macCredits: './oxs_credits.html'
+  macCredits: './osx_credits.html'
   macIcns: './icons/ethereum-logo.icns'
   winIco: './icons/ethereum-logo.ico'
 
