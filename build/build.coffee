@@ -2,13 +2,17 @@
 console.log ('Building Ethos...')
 console.log( 'Working dir: ', __dirname )
 
+path = require( 'path' )
+
 NwBuilder = require( 'node-webkit-builder' )
 nw = new NwBuilder
   files: './**' # use the glob format
   platforms: ['win','osx']
-  macCredits: './osx_credits.html'
-  macIcns: './icons/ethereum-logo.icns'
-  winIco: './icons/ethereum-logo.ico'
+  buildType: 'versioned'
+  macZip: false
+  macCredits: path.join( __dirname, './osx_credits.html' )
+  macIcns: path.join( __dirname, './icons/ethereum-logo.icns' )
+  winIco: path.join( __dirname, './icons/ethereum-logo.ico' )
 
 # Log stuff you want
 nw.on('log',  console.log);
