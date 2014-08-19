@@ -3,12 +3,17 @@ url = require( 'url' )
 request = require( 'request' )
 jade = require( 'jade' )
 
-app = express()
+swarm = require( './swarm' )
+swarmClient = swarm( dataDir: './data' )
 
+PORT = 8080
+
+app = express()
 app.set( 'views', __dirname + '/../views' )
 app.set( 'view engine', 'jade' )
 
-PORT = 8080
+
+
 
 NAMEREG_ADDRESS = 'NNN0'
 

@@ -18,6 +18,7 @@
   "inject-js-start": "./static/assets/inject.bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "coffee ./lib/server.coffee",
     "build": "npm install && npm run compile && coffee ./build/build.coffee",
     "build-dev": "npm run compile && nwbuild -r .",
     "compile": "browserify ./lib/inject.js > ./static/assets/inject.bundle.js"
@@ -33,7 +34,8 @@
     "jquery": "~2.1.1",
     "express": "~4.8.4",
     "coffee-script": "~1.7.1",
-    "jade": "~1.5.0"
+    "jade": "~1.5.0",
+    "node-torrent": "~0.2.1"
   },
   "devDependencies": {
     "node-webkit-builder": "~0.1.1",
