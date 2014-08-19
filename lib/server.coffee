@@ -3,18 +3,30 @@ url = require( 'url' )
 request = require( 'request' )
 jade = require( 'jade' )
 
-swarm = require( './swarm' )
-swarmClient = swarm( dataDir: './data' )
 
 PORT = 8080
-
 app = express()
 app.set( 'views', __dirname + '/../views' )
 app.set( 'view engine', 'jade' )
+app.listen( PORT )
+
+console.log( "Ethos server started at http://localhost:#{ PORT }" )
+
+app.get '/', (req, res) ->
+  res.sendFile( 'index.html', {root: './static'});
+
+app.get '/static/*', (req, res) ->
+  res.sendFile( req.url.replace('/static/', '' )  , {root: './static'});
 
 
+# Torrents and Swarm
+swarm = require( './swarm' )
+swarmClient = swarm( dataDir: './data' )
 
+app.get '/swarm', (req,res) ->
+  res.render( 'swarm', torrents: swarmClient.torrents )
 
+# URL Resolution
 NAMEREG_ADDRESS = 'NNN0'
 
 MOCK_DATA =
@@ -48,12 +60,6 @@ reg = (address, name) ->
 
 for name, address in MOCK_DATA[NAMEREG_ADDRESS]
   reg( address, name )
-
-app.get '/', (req, res) ->
-  res.sendFile( 'index.html', {root: './static'});
-
-app.get '/static/*', (req, res) ->
-  res.sendFile( req.url.replace('/static/', '' )  , {root: './static'});
 
 app.get '*', (req,res) ->
 
@@ -90,14 +96,9 @@ app.get '*', (req,res) ->
     method = req.method
     res.render( 'ip', url: scheme )
   else if protocol is 'th'
-    scheme = "http://eth:8080/th"
-    scheme += "##{ base }" if base
-    res.render( 'th', hash: domain, title: base )
+    res.render( 'swarm', torrents: swarmClient.torrents, hash: domain, title: base )
   else
     res.json
       url: url
       scheme: scheme
 
-
-app.listen( PORT )
-console.log( "Ethos server started at http://localhost:#{ PORT }" )

@@ -19,8 +19,8 @@ module.exports = ({ dataDir }) ->
   torrent.on 'complete', ->
     console.log('torrent complete!')
     torrent.files.forEach (file) ->
-      newPath = "/new/path/#{ file.path }"
-      fs.rename( file.path, newPath )
+      # newPath = "/new/path/#{ file.path }"
+      # fs.rename( file.path, newPath )
       # while still seeding need to make sure file.path points to the right place
       file.path = newPath
 
