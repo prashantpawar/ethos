@@ -4,6 +4,8 @@ nw = new NwBuilder
   platforms: ['win','osx']
   macCredits: './credits.html'
   macPlist: './ethos.plist'
+  macIcns: '../static/assets/icons/ethereum-logo.icns'
+  winIco: '../static/assets/icons/ethereum-logo.ico'
 
 # Log stuff you want
 nw.on('log',  console.log);
