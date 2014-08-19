@@ -1,8 +1,14 @@
 express = require( 'express' )
 url = require( 'url' )  
+request = require( 'request' )
+jade = require( 'jade' )
 
 app = express()
-PORT = 80
+app.use( express.static(__dirname + '../static') )
+app.set( 'views', __dirname + '/../views' )
+app.set( 'view engine', 'jade' )
+
+PORT = 8080
 
 NAMEREG_ADDRESS = 'NNN0'
 
@@ -36,11 +42,14 @@ reg = (address, name) ->
 for name, address in MOCK_DATA[NAMEREG_ADDRESS]
   reg( address, name )
 
-app.get '/', (req, res) ->
+app.get '/test', (req,res) ->
+  res.render( 'index' )
 
-  res.json
-    url: url.parse( req.url, true )
-    scheme: "http://localhost:#{PORT}/index.html"
+app.get '/', (req, res) ->
+  res.sendFile( 'index.html', {root: './static'});
+
+app.get '/static/*', (req, res) ->
+  res.sendFile( req.url.replace('/static/', '' )  , {root: './static'});
 
 app.get '*', (req,res) ->
 
@@ -61,7 +70,8 @@ app.get '*', (req,res) ->
   
   if protocol is 'eth' and MOCK_DATA.dox[ MOCK_DATA[ NAMEREG_ADDRESS ][base] ]
     protocol = 'th'
-    domain =  MOCK_DATA.dox[ MOCK_DATA[ NAMEREG_ADDRESS ][base] ]
+    base = MOCK_DATA.dox[ MOCK_DATA[ NAMEREG_ADDRESS ][base] ]
+    domain = 'dox'
 
 
   scheme = "#{ protocol }://#{ domain }"
@@ -71,18 +81,19 @@ app.get '*', (req,res) ->
   if protocol is 'ip'
     domain = MOCK_DATA.ip[ MOCK_DATA[ NAMEREG_ADDRESS ][base] ]
     path = rest.join('/')
-    scheme = domain
+    scheme = "#{domain}"
     scheme += url.search if url.search
-    scheme += "##{ path }" if path
-
-  if protocol is 'th'
-    scheme = "magnet:?xt=urn:btih:#{ domain }"
-    scheme += "##{ path }" if path
-
-  res.json
-    url: url
-    scheme: scheme
+    method = req.method
+    res.render( 'ip', { url: scheme } )
+  else if protocol is 'th'
+    scheme = "http://eth:8080/th"
+    scheme += "##{ base }" if base
+    res.sendFile( 'th.html', root: './static' )
+  else
+    res.json
+      url: url
+      scheme: scheme
 
 
 app.listen( PORT )
-console.log( "Express started on port #{ PORT }" )
+console.log( "Ethos server started at http://localhost:#{ PORT }" )

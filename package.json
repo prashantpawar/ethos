@@ -1,16 +1,39 @@
 {
-  "name": "ethos",
+  "name": "Ethos",
   "version": "0.0.0",
   "description": "Ethereum Browser",
-  "main": "index.js",
+  "main": "app://ethos/static/bootstrap.html",
+  "node-main": "./lib/server.js",
+  "node-remote": "http://eth",
+  "chromium-args": "--disable-web-security",
+  "window": {
+    "show": true,
+    "toolbar": true,
+    "position": "center",
+    "width": 500,
+    "height": 500,
+    "min_width": 300,
+    "min_height": 200
+  },
+  "inject-js-start": "assets/inject.bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "coffee server.coffee"
+    "build": "nwbuild -p osx,win -o ./build ."
   },
-  "author": "Doug A.",
+  "repository":{
+    "type":"git",
+    "url": "git://github.com/d11e9/ethos.git"
+  },
+  "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.8.4"
+    "request": "~2.40.0",
+    "jquery": "~2.1.1",
+    "express": "~4.8.4",
+    "coffee-script": "~1.7.1",
+    "jade": "~1.5.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "node-webkit-builder": "~0.1.1"
+  }
 }

@@ -1,0 +1,164 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+
+body {
+    overflow: hidden;
+}
+
+body.debug #debug-output { display: block; }
+body.debug #window-container { bottom: 11em; }
+
+#window-container {
+    position: absolute;
+    top: 5em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#window {
+    height: 100%;
+    width: 100%;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+#debug-output {
+    display: none;
+    background-color: #ccc;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10em;
+}
+
+#nav-bar {
+    overflow: auto;
+    padding: 1em 1em;
+    background-color: white;
+}
+
+#nav-bar .home,
+#nav-bar #ethos-menu,
+#nav-bar .submit, 
+#nav-bar #ethos-debug,
+#nav-bar #ethos-back,
+#nav-bar #ethos-forward,
+#nav-bar #ethos-refresh { 
+    height: 25px;
+    float: left;
+    cursor: pointer;
+}
+
+#nav-bar .submit, 
+#nav-bar #ethos-refresh,
+#nav-bar #ethos-debug { 
+    float: right;
+    cursor: pointer;
+    height: 25px;
+}
+
+
+#nav-bar #url-container {
+    display: inline-block;
+    padding: 0.2em 0.4em;
+    border: 1px solid #ccc;
+    color: #ccc;
+    position: absolute;
+    left: 13em;
+    right: 10.3em;
+    padding-right: 2em;
+    font-family: monospace;
+}
+
+#nav-bar #url-container input {
+    border: 0 none;
+    outline: 0 none;
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+#nav-bar #url-container .save {
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    padding: 0.35em 0.4em;
+    font-size: 1.4em;
+    right: 0;
+    top: 0;
+}
+
+
+
+
+
+#home, #index {
+    height: 100%;
+}
+
+#home body, 
+#index body {
+    height: 100%;
+}
+
+#home .title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: sans-serif;
+    top: 20%;
+    color: #ccc;
+    pointer-events: none;
+}
+#home .title h2 {
+    font-family: serif;
+    font-style: italic;
+    font-weight: normal;
+}
+#home .title img {
+    width: 100px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+
+#home .dapps {
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    list-style: none;
+    pointer-events: all;
+    margin-top: 2em;
+}
+#home ul.dapps li {
+    font-size: 1.4em;
+    color: #ccc;
+    display: inline-block;
+    margin: 0 1.5em;
+    margin-bottom: 2em;
+    min-width: 5em;
+}
+#home ul.dapps li a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    cursor: pointer;
+}
+#home ul.dapps li a:hover {
+    color: #333;
+}
+#home ul.dapps li i {
+    display: block;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+#home ul.dapps li span {
+    display: block;
+}
