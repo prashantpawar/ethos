@@ -21,7 +21,7 @@ app.get '/static/*', (req, res) ->
 
 # Torrents and Swarm
 swarm = require( './swarm' )
-swarmClient = swarm( dataDir: './data' )
+swarmClient = swarm( dataDir: './data/data', torrentDir: './data/torrents' )
 
 app.get '/swarm', (req,res) ->
   res.render( 'swarm', torrents: swarmClient.torrents )

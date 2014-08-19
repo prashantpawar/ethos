@@ -23,19 +23,20 @@
     "build-dev": "npm run compile && nwbuild -r .",
     "compile": "browserify ./lib/inject.js > ./static/assets/inject.bundle.js"
   },
-  "repository":{
-    "type":"git",
+  "repository": {
+    "type": "git",
     "url": "git://github.com/d11e9/ethos.git"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "request": "~2.40.0",
-    "jquery": "~2.1.1",
-    "express": "~4.8.4",
     "coffee-script": "~1.7.1",
+    "express": "~4.8.4",
     "jade": "~1.5.0",
-    "node-torrent": "~0.2.1"
+    "jquery": "~2.1.1",
+    "node-torrent": "~0.2.1",
+    "nt": "^0.4.1",
+    "request": "~2.40.0"
   },
   "devDependencies": {
     "node-webkit-builder": "~0.1.1",
