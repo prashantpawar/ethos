@@ -10,8 +10,3 @@ if (process.platform == 'darwin') {
 }
 
 win.window.location.href = 'http://eth:8080'
-
-win.on( 'document-start', function(frame){
-  console.log( 'document-start', arguments)
-})
-
