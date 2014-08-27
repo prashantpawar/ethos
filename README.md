@@ -20,6 +20,17 @@ To run the development build of Ethos to the following
     npm run build-dev
 
 
+Until the Ethereum DNS solution is available Ethos requires custom editing of the systems `/etc/hosts` file the following can be done on OSX (osx_install.sh is available in the build directory)
+
+    sudo -- sh -c "echo 127.0.0.1 eth >> /etc/hosts"
+
+**Windows**
+
+On windows the equivalent is needed but done differently, for now use google to find out how, but a win_install.bat will be added to this repo in the near future.
+
+
+
+
 ##Server
 
 The webkit instance also instantiates a nodejs server which is used for serving Ethos interface pages, like the homescreen etc. 
