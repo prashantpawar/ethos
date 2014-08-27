@@ -3,6 +3,8 @@ Ethos
 
 An Ethereum Browser
 
+![Ethos](https://raw.githubusercontent.com/projectdnet/ethos/master/static/assets/imgs/v0.0.3-screenshot.png "Ethos and Ethereum Browser")
+
 
 Still under development. Binaries for the various platforms (when appropriate) will be available at [https://github.com/projectdnet/ethos/releases](https://github.com/projectdnet/ethos/releases).
 
