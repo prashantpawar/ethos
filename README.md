@@ -12,23 +12,23 @@ Still under development. Binaries for the various platforms (when appropriate) w
 
 The application which is essentially a node-webkit wrapper around other Ethereum projects which when used together make for a better DApp user experience.
 
-Until the Ethereum DNS solution is available Ethos requires custom editing of the systems `/etc/hosts` file the following can be done on OSX (osx_install.sh is available in the build directory)
+Until the Ethereum DNS solution is available Ethos requires custom editing of the systems `/etc/hosts` file the following can be done on OSX (`build/osx_install.sh` is available.)
 
     sudo -- sh -c "echo 127.0.0.1 eth >> /etc/hosts"
 
 **Windows**
 
-On windows the equivalent is needed but done differently, for now use google to find out how, but a win_install.bat will be added to this repo in the near future.
+The windows equivalent  to the above is needed but done differently, for now use google to find out how, but a `build/win_install.bat` will be added to this repo in the near future.
 
 To run the development build of Ethos to the following
 
-** Install **
+**Install**
 
     git clone git://github.com/projectdnet/ethos.git
     cd ethos
     npm install
 
-** Run **
+**Run**
 
     npm run build-dev
 
