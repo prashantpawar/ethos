@@ -19,12 +19,12 @@ app.get '/static/*', (req, res) ->
   res.sendFile( req.url.replace('/static/', '' )  , {root: './static'});
 
 
-# Torrents and Swarm
-swarm = require( './swarm' )
-swarmClient = swarm( dataDir: './data/data', torrentDir: './data/torrents' )
+# # Torrents and Swarm
+# swarm = require( './swarm' )
+# swarmClient = swarm( dataDir: './data/data', torrentDir: './data/torrents' )
 
-app.get '/swarm', (req,res) ->
-  res.render( 'swarm', torrents: swarmClient.torrents )
+# app.get '/swarm', (req,res) ->
+#   res.render( 'swarm', torrents: swarmClient.torrents )
 
 # URL Resolution
 NAMEREG_ADDRESS = 'NNN0'
