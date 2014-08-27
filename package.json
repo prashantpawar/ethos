@@ -15,6 +15,7 @@
     "min_width": 300,
     "min_height": 200
   },
+  "user-agent": "Mozilla/5.0 (%osinfo) AppleWebKit/%webkit_ver (KHTML, like Gecko) %name/%ver Safari/%webkit_ver",
   "inject-js-start": "./static/assets/inject.bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/d11e9/ethos.git"
+    "url": "git://github.com/projectdnet/ethos.git"
   },
   "author": "",
   "license": "MIT",

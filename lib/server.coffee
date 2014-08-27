@@ -13,7 +13,7 @@ app.listen( PORT )
 console.log( "Ethos server started at http://localhost:#{ PORT }" )
 
 app.get '/', (req, res) ->
-  res.sendFile( 'index.html', {root: './static'});
+  res.render( 'index', {} );
 
 app.get '/static/*', (req, res) ->
   res.sendFile( req.url.replace('/static/', '' )  , {root: './static'});
@@ -42,11 +42,13 @@ MOCK_DATA =
     AAA1: 'http://projectdnet.github.io/d2'
     AAA4: 'http://gavwood.com/gavcoin.html'
     AAA5: 'http://example.com'
+    AAA6: 'file:///C:/Users/cdbeer/eth/Occams%20Run/index.html'# 'http://d11e9.github.io/Occams-Run'
     EEE0: "http://localhost:#{ PORT }/index.html"
     EEE1: "http://eth:#{ PORT }/swarm"
 
 MOCK_DATA[NAMEREG_ADDRESS] =
   ethos: 'EEE0'
+  occamsrun: 'AAA6'
   namereg: NAMEREG_ADDRESS
   dox: 'AAA1'
   th: 'AAA2'

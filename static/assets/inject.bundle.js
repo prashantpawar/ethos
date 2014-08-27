@@ -1,5 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-window.eth = require( './poly-eth' )
+
+window.eth = require('./poly-eth')( null )
 console.log( 'poly-eth injected by Ethos' )
 },{"./poly-eth":2}],2:[function(require,module,exports){
 
@@ -7,14 +8,13 @@ var bigInt = require( './lib/BigInteger' );
 var EthString = require( './lib/ethstring' );
 
 
-
-
 var polyeth = function(eth) {
 
   var checkClient = function(eth) {
     var UA = window.navigator.userAgent;
     if (UA.match( 'Aleth' )) return 'aleth';
-    if (UA.match( 'Ethereal')) return 'ethereal'
+    if (UA.match( 'Ethereal')) return 'ethereal';
+    if (UA.match( 'Ethos')) return 'ethos';
   }
 
   var accounts = {
@@ -25,9 +25,41 @@ var polyeth = function(eth) {
 
   var watching = {}
 
+  var cpp_eth = require( './lib/eth.js')
+
   var mocketh = {
-    eth: require( './lib/eth.js'),
+    eth: cpp_eth,
     client: 'mocketh',
+
+    // Proxy to cpp-ethereum eth/rpc object
+
+    getProcedures: cpp_eth.getProcedures,
+    getCoinbase: cpp_eth.getCoinbase,
+    getIsListening: cpp_eth.getIsListening,
+    getIsMining: cpp_eth.getIsMining,
+    getGasPrice: cpp_eth.getGasPrice,
+    getKey: cpp_eth.getKey,
+    getKeys: cpp_eth.getKeys,
+    getPeerCount: cpp_eth.getPeerCount,
+    getBalanceAt: cpp_eth.getBalanceAt,
+    balanceAt: cpp_eth.balanceAt,
+    getStorageAt: cpp_eth.getStorageAt,
+    storageAt: cpp_eth.storageAt,
+    getTxCountAt: cpp_eth.getTxCountAt,
+    txCountAt: cpp_eth.txCountAt, 
+    getIsContractAt: cpp_eth.getIsContractAt,
+    isContractAt: cpp_eth.isContractAt,
+    create: cpp_eth.create,
+    transact: cpp_eth.transact,
+    getSecretToAddress: cpp_eth.getSecretToAddress,
+    secretToAddress: cpp_eth.secretToAddress,
+    getLll: cpp_eth.getLll,
+    lll: cpp_eth.lll,
+    check: cpp_eth.check,
+    watch: cpp_eth.watch,
+    unwatch: cpp_eth.unwatch,
+    newBlock: cpp_eth.newBlock,
+
     getKeys: function(cb){ cb(['MockKey213dsf3454as'])},
     secretToAddress: function(privateKey){
       return accounts[privateKey] || accounts['SELF'];
@@ -46,6 +78,9 @@ var polyeth = function(eth) {
   }
 
   var clients = {
+
+    ethos: checkClient( eth ) == 'aleth' && mocketh,
+
     aleth: checkClient( eth ) == 'aleth' && {
       eth: eth,
       client: 'aleth',

@@ -1,4 +1,36 @@
 doctype html
-html
+html#home
+	head
+		title Ethos
+		script( src="" )
+		link( rel="stylesheet", href="/static/assets/style.css" )
+		link( rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css" )
 	body
-		h1 Test
+		.title
+			img( alt="Ethos, made for Ethereum", src="/static/assets/ethereum-logo.png" )
+
+			ul.dapps
+				li
+					a( href="/namereg" )
+						i.fa.fa-university
+						span NameReg
+				li
+					a( href="/etherchain" )
+						i.fa.fa-cube
+						span Etherchain
+				li
+					a( href="/dox" )
+						i.fa.fa-file-text
+						span Dox
+				li
+					a( href="/gavcoin" )
+						i.fa.fa-database
+						span GavCoin
+				li
+					a( href="/swarm" )
+						i.fa.fa-magnet
+						span Swarm
+				li
+					a( href="/occamsrun" )
+						i.fa.fa-gamepad
+						span Occam's Run
