@@ -42,7 +42,7 @@ MOCK_DATA =
     AAA1: 'http://projectdnet.github.io/d2'
     AAA4: 'http://gavwood.com/gavcoin.html'
     AAA5: 'http://example.com'
-    AAA6: 'file:///C:/Users/cdbeer/eth/Occams%20Run/index.html'# 'http://d11e9.github.io/Occams-Run'
+    AAA6: 'http://d11e9.github.io/Occams-Run'
     EEE0: "http://localhost:#{ PORT }/index.html"
     EEE1: "http://eth:#{ PORT }/swarm"
 
